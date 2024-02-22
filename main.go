@@ -45,7 +45,7 @@ func main() {
 	itemRepo := models.NewItemRepository(database)
 	studentRepo := models.NewStudentRepository(database)
 	subjectRepo := models.NewSubjectRepository(database)
-
+	teacherRepo := models.NewTeacherRepository(database)
 	// Initialize Gin router
 	r := gin.Default()
 
@@ -72,6 +72,14 @@ func main() {
 	r.GET("/students/:id", studentRepo.GetStudent)
 	r.PUT("/students/:id", studentRepo.UpdateStudent)
 	r.DELETE("/students/:id", studentRepo.DeleteStudent)
+
+	// Teacher routes
+
+	r.GET("/teachers", teacherRepo.GetTeachers)
+	r.POST("/teachers", teacherRepo.CreateTeacher)
+	r.GET("/teachers/:id", teacherRepo.GetTeacher)
+	r.PUT("/teachers/:id", teacherRepo.UpdateTeacher)
+	r.DELETE("/teachers/:id", teacherRepo.DeleteTeacher)
 
 	// Subject routes
 	r.GET("/subjects", subjectRepo.GetSubjects)
