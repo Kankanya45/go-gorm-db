@@ -16,14 +16,14 @@ func NewTeacherRepository(db *gorm.DB) *TeacherRepository {
 	return &TeacherRepository{Db: db}
 }
 
-// GetTeachers retrieves all teachers from the database and returns them as JSON.
+// GetTeachers retrieves all Teachers from the database and returns them as JSON.
 func (r *TeacherRepository) GetTeachers(c *gin.Context) {
 	var teachers []Teacher
 	r.Db.Find(&teachers)
 	c.JSON(200, teachers)
 }
 
-// GetTeacher retrieves a teacher from the database based on the given ID and returns it as JSON.
+// GetTeacher retrieves a Teacher from the database based on the given ID and returns it as JSON.
 func (r *TeacherRepository) GetTeacher(c *gin.Context) {
 	id := c.Param("id")
 	var teacher Teacher
@@ -31,7 +31,7 @@ func (r *TeacherRepository) GetTeacher(c *gin.Context) {
 	c.JSON(200, teacher)
 }
 
-// CreateTeacher adds a new teacher to the database and returns it as JSON.
+// CreateTeacher adds a new Teacher to the database and returns it as JSON.
 func (r *TeacherRepository) CreateTeacher(c *gin.Context) {
 	var newTeacher Teacher
 	c.BindJSON(&newTeacher)
@@ -39,7 +39,7 @@ func (r *TeacherRepository) CreateTeacher(c *gin.Context) {
 	c.JSON(200, newTeacher)
 }
 
-// UpdateTeacher updates an existing teacher in the database and returns it as JSON.
+// UpdateTeacher updates an existing Teacher in the database and returns it as JSON.
 func (r *TeacherRepository) UpdateTeacher(c *gin.Context) {
 	id := c.Param("id")
 	var teacher Teacher
@@ -49,7 +49,7 @@ func (r *TeacherRepository) UpdateTeacher(c *gin.Context) {
 	c.JSON(200, teacher)
 }
 
-// DeleteTeacher deletes a teacher from the database based on the given ID and returns a JSON response.
+// DeleteTeacher deletes a Teacher from the database based on the given ID and returns a JSON response.
 func (r *TeacherRepository) DeleteTeacher(c *gin.Context) {
 	id := c.Param("id")
 	var teacher Teacher

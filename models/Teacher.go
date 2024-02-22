@@ -6,8 +6,8 @@ import "gorm.io/gorm"
 type Teacher struct {
 	gorm.Model
 
-	// Your custom fields
 	FirstName string
 	LastName  string
-	Subjects  string
+	Age       int
+	Salary    int
 }
