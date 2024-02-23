@@ -59,21 +59,17 @@ func main() {
 		MaxAge:           12 * time.Hour,
 	}))
 
-	// Item routes
 	r.GET("/items", itemRepo.GetItems)
 	r.POST("/items", itemRepo.PostItem)
 	r.GET("/items/:id", itemRepo.GetItem)
 	r.PUT("/items/:id", itemRepo.UpdateItem)
 	r.DELETE("/items/:id", itemRepo.DeleteItem)
 
-	// Student routes
 	r.GET("/students", studentRepo.GetStudents)
 	r.POST("/students", studentRepo.CreateStudent)
 	r.GET("/students/:id", studentRepo.GetStudent)
 	r.PUT("/students/:id", studentRepo.UpdateStudent)
 	r.DELETE("/students/:id", studentRepo.DeleteStudent)
-
-	// Teacher routes
 
 	r.GET("/teachers", teacherRepo.GetTeachers)
 	r.POST("/teachers", teacherRepo.CreateTeacher)
@@ -81,7 +77,6 @@ func main() {
 	r.PUT("/teachers/:id", teacherRepo.UpdateTeacher)
 	r.DELETE("/teachers/:id", teacherRepo.DeleteTeacher)
 
-	// Subject routes
 	r.GET("/subjects", subjectRepo.GetSubjects)
 	r.POST("/subjects", subjectRepo.CreateSubject)
 	r.GET("/subjects/:id", subjectRepo.GetSubject)
@@ -90,26 +85,12 @@ func main() {
 
 	userRepo := models.NewUserRepository(database)
 
-	// api /users จะเป็นการเรียกใช้งานฟังก์ชัน GetUsers ใน UserRepository
 	r.GET("/users", userRepo.GetUsers)
-
-	// api /users จะเป็นการเรียกใช้งานฟังก์ชัน PostUser ใน UserRepository
 	r.POST("/users", userRepo.PostUser)
-
-	// api /users/:email จะเป็นการเรียกใช้งานฟังก์ชัน GetUser ใน UserRepository
-	// /users/abc@example จะเป็นการส่งค่า email ที่เป็นตัวอักษร abc@example ไปยังฟังก์ชัน GetUser ใน UserRepository
 	r.GET("/users/:email", userRepo.GetUser)
-
-	// api /users/:email จะเป็นการเรียกใช้งานฟังก์ชัน UpdateUser ใน UserRepository
 	r.PUT("/users/:email", userRepo.UpdateUser)
-
-	// api /users/:email จะเป็นการเรียกใช้งานฟังก์ชัน DeleteUser ใน UserRepository
 	r.DELETE("/users/:email", userRepo.DeleteUser)
-
-	// api /users/login จะเป็นการเรียกใช้งานฟังก์ชัน Login ใน UserRepository
 	r.POST("/users/login", userRepo.Login)
-
-	// 404 route
 	r.NoRoute(func(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{"message": "Not found"})
 	})
